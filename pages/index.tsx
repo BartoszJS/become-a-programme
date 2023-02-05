@@ -5,8 +5,7 @@ import styles from "@/styles/Home.module.css";
 import banner from "../public/banner.jpg";
 import Header from "@/components/Header";
 import { BsArrowRight } from "react-icons/bs";
-import Video from "@/components/Video";
-import VideosReact from "@/components/VideosReact";
+
 import RowReact from "@/components/RowReact";
 
 export default function Home() {
@@ -27,16 +26,16 @@ export default function Home() {
         </div> */}
         <Header />
         <div className='flex flex-col space-y-2 pt-[45vh] md:space-y-4 '>
-          <div className='absolute top-0 left-0 h-[95vh] w-screen -z-10'>
+          <div className='absolute top-0 left-0 h-[95vh] w-screen -z-20'>
             <Image
-              className='object-cover '
+              className='object-cover'
               src={banner.src}
               fill={true}
               alt='banner'
             />
           </div>
         </div>
-        <div className='w-full pb-[45vh] max-w-7xl mx-auto text-right flex justify-center'>
+        <div className='w-full pb-[20vh] max-w-7xl mx-auto text-right flex justify-center'>
           <div className='w-fit'>
             <h1 className='text-white text-6xl font-thin'>
               Become a frontend developer
@@ -46,8 +45,7 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        {/* <Video /> */}
-        {/* <VideosReact /> */}
+
         <RowReact />
       </div>
     </>
