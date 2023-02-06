@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import { BsArrowRight } from "react-icons/bs";
 
 import RowReact from "@/components/RowReact";
+import RowAngular from "@/components/RowAngular";
+import RowVue from "@/components/RowVue";
 
 export default function Home() {
   return (
@@ -35,18 +37,23 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className='w-full pb-[20vh] max-w-7xl mx-auto text-right flex justify-center'>
+        {/* <div className='absolute z-190 left-[50%] top-[100px] bg-red-600 rounded text-white p-3'>
+          This is a test website
+        </div> */}
+        <div className='w-full pb-[20vh] mx-auto text-right flex justify-center'>
           <div className='w-fit'>
-            <h1 className='text-white text-6xl font-thin'>
+            <h1 className='text-white text-2xl min-[420px]:text-3xl sm:text-5xl md:text-6xl font-thin'>
               Become a frontend developer
             </h1>
-            <h2 className='text-gray-200  text-5xl font-thin flex justify-start hover:pl-[20%] cursor-pointer duration-300 items-center'>
+            <h2 className='text-gray-200 text-xl min-[420px]:text-2xl sm:text-4xl md:text-5xl font-thin flex justify-start hover:pl-[20%] cursor-pointer duration-300 items-center'>
               Check our courses <BsArrowRight />
             </h2>
           </div>
         </div>
 
         <RowReact />
+        <RowAngular />
+        <RowVue />
       </div>
     </>
   );
