@@ -10,11 +10,15 @@ import Modal from "@mui/material/Modal";
 import * as React from "react";
 import ReactPlayer from "react-player/lazy";
 import { width } from "@mui/system";
+import ModalComp from "./ModalComp";
+import { ImCross } from "react-icons/im";
 
 export default function Video() {
   const [videos, setVideos] = useState<any[]>([]);
   const [open, setOpen] = React.useState(false);
-  const [introId, setIntroId] = React.useState(null);
+  const [introId, setIntroId] = React.useState("react18intro.mp4");
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [videoPlayer, setVideoPlayer] = useState<any>(null);
   const handleOpen = (id: any) => {
     setIntroId(id);
@@ -29,6 +33,7 @@ export default function Video() {
         "imageUrl": image.asset->url,
         full,
         intro,
+        description,
        }`;
     client
       .fetch(query)
@@ -38,33 +43,22 @@ export default function Video() {
       .catch(console.error);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, []);
-
-  useEffect(() => {
-    setVideoPlayer(
-      <div>
-        <ReactPlayer
-          url={`https://d3l6v5di84fd3f.cloudfront.net/${introId}`}
-          controls={true}
-          playing={true}
-          config={{
-            file: { attributes: { controlsList: "nodownload" } },
-          }}
-          style={{
-            border: "1px solid grey",
-            maxWidth: 1170,
-            marginTop: "64px",
-          }}
-          width={"100%"}
-          height={"100%"}
-        />
-        <h3>{introId}</h3>
-      </div>
-    );
-    console.log(introId);
-  }, [open]);
+  // useEffect(() => {
+  //   setVideoPlayer(
+  //     <video
+  //       controls
+  //       autoPlay
+  //       style={{
+  //         border: "1px solid grey",
+  //         maxWidth: 1170,
+  //         marginTop: "64px",
+  //         width: "100%",
+  //       }}
+  //       src={`https://d3l6v5di84fd3f.cloudfront.net/${introId}`}
+  //     ></video>
+  //   );
+  //   console.log(introId);
+  // }, [introId]);
 
   return (
     <>
@@ -77,23 +71,28 @@ export default function Video() {
         </h2>
       </div>
       <div className='flex'>
-        {videos.map((video, index) =>
-          index < 3 && video.intro !== null ? (
-            <div
-              className='w-[100%] m-2 cursor-pointer'
-              onClick={() => {
-                setIntroId(video.intro);
-                setOpen(true);
-              }}
-              key={index}
-            >
-              <div className='bg-gradient-to-b from-transparent to-black'>
-                <img className='opacity-80' alt='banner' src={video.imageUrl} />
+        {videos.map(
+          (video, index) =>
+            index < 3 && (
+              <div
+                className='w-[100%] m-2 cursor-pointer'
+                onClick={() => {
+                  setIntroId(video.intro);
+                  setTitle(video.title);
+                  setDescription(video.description);
+                  setOpen(true);
+                }}
+                key={index}
+              >
+                <div className='bg-gradient-to-b from-transparent to-black'>
+                  <img
+                    className='opacity-80'
+                    alt='banner'
+                    src={video.imageUrl}
+                  />
+                </div>
               </div>
-            </div>
-          ) : (
-            <div>loading</div>
-          )
+            )
         )}
       </div>
       <Modal
@@ -102,12 +101,18 @@ export default function Video() {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Box className='absolute w-[100%] max-w-[1200px] mx-auto left-0 right-0 text-center '>
-          {videoPlayer}
-          {console.log(videoPlayer)}
-          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+        <Box className='absolute w-[100%] max-w-[1000px] mx-auto left-0 right-0 text-center focus:outline-none shadow-none '>
+          <div
+            onClick={handleClose}
+            className='static w-fit bg-red-600 p-2 rounded-full cursor-pointer mt-[32px] left-0 '
+          >
+            <ImCross />
+          </div>
+          <ModalComp
+            description={description}
+            title={title}
+            introId={introId}
+          />
         </Box>
       </Modal>
     </>
