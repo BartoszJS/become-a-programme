@@ -7,7 +7,7 @@ import useAuth from "@/hooks/useAuth";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`${isScrolled && "bg-[#141414]"} `}>
+    <header className={`${isScrolled && "bg-[#141414]"} h-[60px]`}>
       <div className='flex items-center space-x-2 md:space-x-10 font-extralight'>
         <Link href='/'>
           <img
@@ -46,24 +46,27 @@ const Header = () => {
           <Link href='/vuejs'>
             <li className='headerLink'>Vue.js</li>
           </Link>
-          <Link href='/react'>
+          <Link href='/pricing'>
             <li className='headerLink'>Pricing</li>
           </Link>
         </ul>
       </div>
       <div className='flex items-center space-x-4 text-md font-light'>
-        <SearchIcon className='hidden sm:inline h-6 w-6 ' />
-        <BellIcon className='hidden sm:inline h-6 w-6 ' />
-        <Link href='/login'>
-          <BiLogIn className=' sm:inline h-6 w-6 ' />
-        </Link>
-        <Link href='/account'>
-          <UserCircleIcon className=' sm:inline h-6 w-6 ' />
-        </Link>
-        <BiLogOut
-          onClick={logout}
-          className='sm:inline h-6 w-6 cursor-pointer'
-        />
+        {user ? (
+          <div className='flex items-center space-x-4 '>
+            <Link href='/account'>
+              <UserCircleIcon className=' sm:inline h-6 w-6 ' />
+            </Link>
+            <BiLogOut
+              onClick={logout}
+              className='sm:inline h-6 w-6 cursor-pointer'
+            />
+          </div>
+        ) : (
+          <Link href='/login'>
+            <BiLogIn className=' sm:inline h-6 w-6 ' />
+          </Link>
+        )}
       </div>
     </header>
   );

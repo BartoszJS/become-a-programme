@@ -28,7 +28,7 @@ export default function Home() {
         </div> */}
         <Header />
         <div className='flex flex-col space-y-2 pt-[45vh] md:space-y-4 '>
-          <div className='absolute top-0 left-0 h-[95vh] w-screen -z-20'>
+          <div className='absolute top-0 left-0 h-[100vh] w-screen -z-20'>
             <Image
               className='object-cover'
               src={banner.src}

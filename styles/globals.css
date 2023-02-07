@@ -16,4 +16,18 @@
   .input {
     @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545];
   }
+  .planBox {
+    @apply relative mx-1.5 flex h-20 bg-[#9e9e9e] w-[calc(100%/3)] cursor-default justify-center items-center rounded-sm bg-[#9e9e9e] font-semibold shadow after:absolute after:top-full after:left-1/2 after:block after:-translate-x-1/2 after:border-8 after:border-b-0 after:border-transparent after:border-t-[#9e9e9e] after:content-[""] md:h-32 lg:mx-8 text-black;
+  }
+  .tableRow {
+    @apply flex flex-wrap items-center font-medium;
+  }
+
+  .tableDataTitle {
+    @apply w-full p-2.5 text-center text-sm font-normal text-white md:w-2/5 md:p-3.5 md:text-left md:text-base;
+  }
+
+  .tableDataFeature {
+    @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
+  }
 }
