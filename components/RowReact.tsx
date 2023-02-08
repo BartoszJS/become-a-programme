@@ -85,7 +85,7 @@ export default function Video() {
                 key={index}
               >
                 <img
-                  className='opacity-80 h-full'
+                  className='opacity-80 object-contain'
                   alt='banner'
                   src={video.imageUrl}
                 />

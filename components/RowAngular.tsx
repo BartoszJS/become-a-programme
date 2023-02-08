@@ -75,7 +75,7 @@ export default function Video() {
           (video, index) =>
             index < 3 && (
               <div
-                className='w-[100%] m-2 cursor-pointer'
+                className='w-[100%] m-2 cursor-pointer '
                 onClick={() => {
                   setIntroId(video.intro);
                   setTitle(video.title);
@@ -85,7 +85,7 @@ export default function Video() {
                 key={index}
               >
                 <img
-                  className='opacity-90 h-full'
+                  className='opacity-90 object-cover'
                   alt='banner'
                   src={video.imageUrl}
                 />
