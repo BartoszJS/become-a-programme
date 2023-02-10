@@ -1,15 +1,18 @@
 import Header from "@/components/Header";
 import Plans from "@/components/Plans";
+import useAuth from "@/hooks/useAuth";
+import useSubscription from "@/hooks/useSubscription";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { client } from "../client";
 
 const react = () => {
+  const { user } = useAuth();
   const [videos, setVideos] = useState<any[]>([]);
   const [full, setFull] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const subscription = false;
+  const subscription = useSubscription(user);
 
   useEffect(() => {
     const query = `*[_type == "react"]{
