@@ -12,6 +12,7 @@ import ReactPlayer from "react-player/lazy";
 import { width } from "@mui/system";
 import ModalComp from "./ModalComp";
 import { ImCross } from "react-icons/im";
+import loading from "../public/loading.svg";
 
 export default function Video() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -19,6 +20,7 @@ export default function Video() {
   const [introId, setIntroId] = React.useState("react18intro.mp4");
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [load, setLoad] = useState(true);
   const [videoPlayer, setVideoPlayer] = useState<any>(null);
   const handleOpen = (id: any) => {
     setIntroId(id);
@@ -39,26 +41,20 @@ export default function Video() {
       .fetch(query)
       .then((data) => {
         setVideos(data);
+        setLoad(false);
       })
       .catch(console.error);
   }, []);
 
-  // useEffect(() => {
-  //   setVideoPlayer(
-  //     <video
-  //       controls
-  //       autoPlay
-  //       style={{
-  //         border: "1px solid grey",
-  //         maxWidth: 1170,
-  //         marginTop: "64px",
-  //         width: "100%",
-  //       }}
-  //       src={`https://d3l6v5di84fd3f.cloudfront.net/${introId}`}
-  //     ></video>
-  //   );
-  //   console.log(introId);
-  // }, [introId]);
+  if (load)
+    return (
+      <div className='align-middle'>
+        <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
+          React
+        </h2>
+        <img src={loading.src} alt='spinnerr' className='-mt-16 mx-auto' />
+      </div>
+    );
 
   return (
     <>
