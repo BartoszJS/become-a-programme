@@ -30,4 +30,11 @@
   .tableDataFeature {
     @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
   }
+
+  .divSubOne {
+    @apply w-[calc(100%/3)] md:w-[calc(60%/3)]  p-4;
+  }
+  .buttonSubOne {
+    @apply w-full p-2 rounded bg-[#363636] py-4 hover:bg-[#161616];
+  }
 }

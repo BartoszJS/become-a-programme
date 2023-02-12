@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
 import Plans from "@/components/Plans";
 import useAuth from "@/hooks/useAuth";
-import useSubscription from "@/hooks/useSubscription";
+import useSubscriptionReact from "@/hooks/useSubscriptionReact";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { client } from "../client";
+import Loader from "@/components/Loader";
 
 const react = () => {
   const { user } = useAuth();
@@ -12,7 +13,8 @@ const react = () => {
   const [full, setFull] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const subscription = useSubscription(user);
+  const reactAccess = useSubscriptionReact(user);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const query = `*[_type == "react"]{
@@ -50,7 +52,15 @@ const react = () => {
     e.preventDefault();
   };
 
-  if (subscription) {
+  if (!reactAccess && !videos) {
+    return (
+      <div>
+        <div className='w-screen h-screen flex justify-center align-middle'>
+          <Loader color='dark:fill-gray-300' />
+        </div>
+      </div>
+    );
+  } else if (!reactAccess) {
     return <Plans />;
   }
 
@@ -68,7 +78,6 @@ const react = () => {
             controls
             controlsList='nodownload'
             aria-disabled='true'
-            autoPlay
             style={{
               outline: "none",
               boxShadow: "none",

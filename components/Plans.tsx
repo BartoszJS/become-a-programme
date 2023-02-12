@@ -19,6 +19,12 @@ const Plans = () => {
     loadCheckout(selectedPlan?.prices[0].id!);
     setIsBillingLoading(true);
   };
+  const subscribeToOnePlan = (product: Product) => {
+    if (!user) return;
+
+    loadCheckout(product?.prices[0].id!);
+    setIsBillingLoading(true);
+  };
 
   useEffect(() => {
     const getServerSideProps = async () => {
@@ -32,11 +38,16 @@ const Plans = () => {
     getServerSideProps();
   }, []);
 
-  useEffect(() => {
-    setSelectedPlan(products[1]);
-  }, [products]);
-
   //if (products === typeof Product) return <div>loading</div>;
+
+  if (products.length === 0) {
+    return (
+      <div className='w-screen h-screen flex justify-center align-middle'>
+        <Header />
+        <Loader color='dark:fill-gray-300' />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -54,7 +65,9 @@ const Plans = () => {
             {products.map((product: Product) => (
               <div
                 className={`planBox ${
-                  selectedPlan?.id === product.id ? "opacity-100" : "opacity-40"
+                  selectedPlan?.id === product.id
+                    ? "opacity-100"
+                    : "opacity-100"
                 }`}
                 key={product.id}
                 onClick={() => setSelectedPlan(product)}
@@ -69,11 +82,7 @@ const Plans = () => {
                 <td className='tableDataTitle'>Price</td>
                 {products.map((product: Product) => (
                   <td
-                    className={`tableDataFeature ${
-                      selectedPlan?.id === product.id
-                        ? "text-white"
-                        : "text-[gray]"
-                    }`}
+                    className={`tableDataFeature text-white"`}
                     key={product.id}
                   >
                     {product.prices[0].unit_amount! / 100} $
@@ -84,11 +93,7 @@ const Plans = () => {
                 <td className='tableDataTitle'>Language</td>
                 {products.map((product: Product) => (
                   <td
-                    className={`tableDataFeature ${
-                      selectedPlan?.id === product.id
-                        ? "text-white"
-                        : "text-[gray]"
-                    }`}
+                    className={`tableDataFeature text-white"`}
                     key={product.id}
                   >
                     {product.metadata.language}
@@ -99,11 +104,7 @@ const Plans = () => {
                 <td className='tableDataTitle'>Duration</td>
                 {products.map((product: Product) => (
                   <td
-                    className={`tableDataFeature ${
-                      selectedPlan?.id === product.id
-                        ? "text-white"
-                        : "text-[gray]"
-                    }`}
+                    className={`tableDataFeature text-white"`}
                     key={product.id}
                   >
                     {product.metadata.duration}
@@ -114,20 +115,34 @@ const Plans = () => {
                 <td className='tableDataTitle'>Level</td>
                 {products.map((product: Product) => (
                   <td
-                    className={`tableDataFeature ${
-                      selectedPlan?.id === product.id
-                        ? "text-white"
-                        : "text-[gray]"
-                    }`}
+                    className={`tableDataFeature text-white"`}
                     key={product.id}
                   >
                     {product.metadata.level}
                   </td>
                 ))}
               </tr>
+              <tr className='tableRow'>
+                <td className='tableDataTitle'>Level</td>
+                {products.map((product: Product) => (
+                  <td className='divSubOne' key={product.id}>
+                    <button
+                      disabled={!selectedPlan || isBillingLoading}
+                      className='buttonSubOne'
+                      onClick={() => subscribeToOnePlan(product)}
+                    >
+                      {isBillingLoading ? (
+                        <Loader color='dark:fill-gray-300' />
+                      ) : (
+                        `Subscribe ${product.name}`
+                      )}
+                    </button>
+                  </td>
+                ))}
+              </tr>
             </tbody>
           </table>
-          <button
+          {/* <button
             disabled={!selectedPlan || isBillingLoading}
             className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
               isBillingLoading && "opacity-60"
@@ -139,7 +154,7 @@ const Plans = () => {
             ) : (
               "Subscribe"
             )}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

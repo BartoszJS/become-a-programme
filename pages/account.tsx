@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import logo from "../public/become-a-programmer-logo.svg";
 import { UserCircleIcon } from "@heroicons/react/solid";
-import useSubscription from "../hooks/useSubscription";
+import useSubscription from "../hooks/useSubscriptionReact";
 import useAuth from "../hooks/useAuth";
 import Membership from "../components/Membership";
 import { GetStaticProps } from "next";
