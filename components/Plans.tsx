@@ -9,6 +9,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Loader from "./Loader";
+import Link from "next/link";
 
 const Plans = () => {
   const { user } = useAuth();
@@ -137,34 +138,46 @@ const Plans = () => {
                 <td className='tableDataTitle'>Status</td>
                 {products.map((product: Product) => (
                   <td className='divSubOne' key={product.id}>
-                    <button
-                      disabled={
-                        isBillingLoading ||
-                        (product.id === "prod_NFnpy9838DslsZ" &&
-                          reactAccess === true) ||
-                        (product.id === "prod_NFnnQ8MnKrpmKN" &&
-                          angularAccess === true) ||
-                        (product.id === "prod_NFo6k1zlmiEA7j" &&
-                          vueAccess === true)
-                          ? true
-                          : false
-                      }
-                      className='buttonSubOne'
-                      onClick={() => subscribeToOnePlan(product)}
-                    >
-                      {isBillingLoading ? (
-                        <Loader color='dark:fill-gray-300' />
-                      ) : (product.id === "prod_NFnpy9838DslsZ" &&
-                          reactAccess === true) ||
-                        (product.id === "prod_NFnnQ8MnKrpmKN" &&
-                          angularAccess === true) ||
-                        (product.id === "prod_NFo6k1zlmiEA7j" &&
-                          vueAccess === true) ? (
-                        "Owned"
-                      ) : (
-                        `Subscribe ${product.name}`
-                      )}
-                    </button>
+                    {user ? (
+                      <button
+                        disabled={
+                          isBillingLoading ||
+                          (product.id === "prod_NFnpy9838DslsZ" &&
+                            reactAccess === true) ||
+                          (product.id === "prod_NFnnQ8MnKrpmKN" &&
+                            angularAccess === true) ||
+                          (product.id === "prod_NFo6k1zlmiEA7j" &&
+                            vueAccess === true)
+                            ? true
+                            : false
+                        }
+                        className='buttonSubOne'
+                        onClick={() => subscribeToOnePlan(product)}
+                      >
+                        {isBillingLoading ? (
+                          <Loader color='dark:fill-gray-300' />
+                        ) : (product.id === "prod_NFnpy9838DslsZ" &&
+                            reactAccess === true) ||
+                          (product.id === "prod_NFnnQ8MnKrpmKN" &&
+                            angularAccess === true) ||
+                          (product.id === "prod_NFo6k1zlmiEA7j" &&
+                            vueAccess === true) ? (
+                          "Owned"
+                        ) : (
+                          `Subscribe ${product.name}`
+                        )}
+                      </button>
+                    ) : (
+                      <div className='flex justify-center items-center'>
+                        <Link
+                          href='/login'
+                          className='buttonSubOne flex justify-center'
+                          onClick={() => subscribeToOnePlan(product)}
+                        >
+                          Log in to buy
+                        </Link>
+                      </div>
+                    )}
                   </td>
                 ))}
               </tr>

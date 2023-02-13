@@ -13,6 +13,8 @@ import { width } from "@mui/system";
 import ModalComp from "./ModalComp";
 import { ImCross } from "react-icons/im";
 import loading from "../public/loading.svg";
+import Loader from "./Loader";
+import Link from "next/link";
 
 export default function Video() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -52,20 +54,24 @@ export default function Video() {
         <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
           React
         </h2>
-        <img src={loading.src} alt='spinnerr' className='-mt-16 mx-auto' />
+        <div className='p-[100px]'>
+          <Loader color='dark:fill-gray-300' />
+        </div>
       </div>
     );
 
   return (
     <>
-      <div className='group flex w-fit'>
-        <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
-          React
-        </h2>
-        <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-500 items-center translate-x-[-600px] group-hover:translate-x-[0px]'>
-          - check all courses
-        </h2>
-      </div>
+      <Link href='/react'>
+        <div className='group flex w-fit'>
+          <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
+            React
+          </h2>
+          <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-500 items-center translate-x-[-600px] group-hover:translate-x-[0px]'>
+            - check all courses
+          </h2>
+        </div>
+      </Link>
       <div className='flex'>
         {videos.map(
           (video, index) =>
@@ -81,7 +87,7 @@ export default function Video() {
                 key={index}
               >
                 <img
-                  className='opacity-80 object-contain'
+                  className='opacity-80 w-screen'
                   alt='banner'
                   src={video.imageUrl}
                 />
@@ -103,6 +109,7 @@ export default function Video() {
             <ImCross />
           </div>
           <ModalComp
+            linkTo='/react'
             description={description}
             title={title}
             introId={introId}

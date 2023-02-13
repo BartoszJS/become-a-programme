@@ -9,6 +9,7 @@ import { BsArrowRight } from "react-icons/bs";
 import RowReact from "@/components/RowReact";
 import RowAngular from "@/components/RowAngular";
 import RowVue from "@/components/RowVue";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -45,9 +46,11 @@ export default function Home() {
             <h1 className='text-white text-2xl min-[420px]:text-3xl sm:text-5xl md:text-6xl font-thin'>
               Become a frontend developer
             </h1>
-            <h2 className='text-gray-200 text-xl min-[420px]:text-2xl sm:text-4xl md:text-5xl font-thin flex justify-start hover:pl-[20%] cursor-pointer duration-300 items-center'>
-              Check our courses <BsArrowRight />
-            </h2>
+            <Link href='/pricing'>
+              <h2 className='text-gray-200 text-xl min-[420px]:text-2xl sm:text-4xl md:text-5xl font-thin flex justify-start hover:pl-[20%] cursor-pointer duration-300 items-center'>
+                Check our courses <BsArrowRight />
+              </h2>
+            </Link>
           </div>
         </div>
 

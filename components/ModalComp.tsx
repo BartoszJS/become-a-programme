@@ -5,14 +5,16 @@ interface Props {
   introId: string;
   title: string;
   description: string;
+  linkTo: string;
 }
 
-const ModalComp = ({ introId, title, description }: Props) => {
+const ModalComp = ({ linkTo, introId, title, description }: Props) => {
   return (
     <div className='bg-black '>
       <video
         controls
         autoPlay
+        controlsList='nodownload'
         style={{
           outline: "none",
           boxShadow: "none",
@@ -27,7 +29,7 @@ const ModalComp = ({ introId, title, description }: Props) => {
       <div className='flex border border-gray-400'>
         <div className='flex justify-center items-start'>
           <a
-            href=''
+            href={linkTo}
             className='whitespace-nowrap bg-gray-700 p-3 m-6 font-bold rounded'
           >
             Full course

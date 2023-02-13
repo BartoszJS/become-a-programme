@@ -16,6 +16,7 @@ const react = () => {
   const reactAccess = useSubscriptionReact(user);
   const [loading, setLoading] = useState(true);
   const [showComponent, setShowComponent] = useState(false);
+  const [trial, setTrial] = useState(false);
 
   useEffect(() => {
     const query = `*[_type == "react"]{
@@ -55,8 +56,11 @@ const react = () => {
 
   useEffect(() => {
     setInterval(() => {
+      setTrial(true);
+    }, 2000);
+    setInterval(() => {
       setShowComponent(true);
-    }, 6000);
+    }, 8000);
   }, []);
 
   if (!reactAccess && !videos) {
@@ -78,12 +82,19 @@ const react = () => {
             <link rel='icon' href='/favicon.ico' />
           </Head>
           <Header />
-          <h1 className='text-red-600 text-5xl absolute left-[50%] top-20'>
-            Trial Access
-          </h1>
-          <h1 className='text-white-400 text-4xl absolute left-[50%] top-32'>
-            buy a full version
-          </h1>
+          <div>
+            {trial && (
+              <div>
+                <h1 className='text-red-600 z-1000 text-5xl absolute left-0 right-0 top-20 mx-auto w-fit'>
+                  Trial Access
+                </h1>
+                <h1 className='text-white-400 text-4xl z-1000 absolute left-0 right-0 top-32 mx-auto w-fit'>
+                  buy a full course
+                </h1>
+              </div>
+            )}
+          </div>
+
           <div className='mt-[60px] grid-container grid grid-cols-5'>
             <div className='item2 col-span-4 bg-black '>
               <video
@@ -120,7 +131,7 @@ const react = () => {
                   >
                     <span>{video.id + " " + video.title}</span>
                     <img
-                      className='opacity-100 h-full'
+                      className='opacity-100 w-screen'
                       alt='banner'
                       src={video.imageUrl}
                     />
@@ -177,7 +188,7 @@ const react = () => {
               >
                 <span>{video.id + " " + video.title}</span>
                 <img
-                  className='opacity-100 h-full'
+                  className='opacity-1000 w-screen'
                   alt='banner'
                   src={video.imageUrl}
                 />
