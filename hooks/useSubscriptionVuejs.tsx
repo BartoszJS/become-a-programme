@@ -6,8 +6,8 @@ import {
 import { User } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 
-const useSubscription = (user: User | null) => {
-  const [reactAccess, setReactAccess] = useState(false);
+const useSubscriptionVuejs = (user: User | null) => {
+  const [vueAccess, setVueAccess] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -15,15 +15,18 @@ const useSubscription = (user: User | null) => {
     onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
       {
         snapshot.subscriptions.map((subscription) => {
-          if (subscription.product === "prod_NFnpy9838DslsZ") {
-            setReactAccess(true);
+          if (
+            subscription.product === "prod_NFo6k1zlmiEA7j" &&
+            subscription.status === "active"
+          ) {
+            setVueAccess(true);
           }
         });
       }
     });
   }, [user]);
 
-  return reactAccess;
+  return vueAccess;
 };
 
-export default useSubscription;
+export default useSubscriptionVuejs;

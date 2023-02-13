@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Loader from "@/components/Loader";
 import Plans from "@/components/Plans";
 import useAuth from "@/hooks/useAuth";
 import useSubscriptionAngular from "@/hooks/useSubscriptionAngular";
@@ -6,13 +7,13 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { client } from "../client";
 
-const react = () => {
+const angular = () => {
   const { user } = useAuth();
   const [videos, setVideos] = useState<any[]>([]);
   const [full, setFull] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const subscription = useSubscriptionAngular(user);
+  const angularAccess = useSubscriptionAngular(user);
 
   useEffect(() => {
     const query = `*[_type == "angular"]{
@@ -50,12 +51,16 @@ const react = () => {
     e.preventDefault();
   };
 
-  if (!subscription) {
+  if (!angularAccess && !videos) {
     return (
       <div>
-        <Plans />
+        <div className='w-screen h-screen flex justify-center align-middle'>
+          <Loader color='dark:fill-gray-300' />
+        </div>
       </div>
     );
+  } else if (!angularAccess) {
+    return <Plans />;
   }
 
   return (
@@ -114,4 +119,4 @@ const react = () => {
   );
 };
 
-export default react;
+export default angular;

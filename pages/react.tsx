@@ -15,6 +15,7 @@ const react = () => {
   const [description, setDescription] = React.useState("");
   const reactAccess = useSubscriptionReact(user);
   const [loading, setLoading] = useState(true);
+  const [showComponent, setShowComponent] = useState(false);
 
   useEffect(() => {
     const query = `*[_type == "react"]{
@@ -52,6 +53,12 @@ const react = () => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    setInterval(() => {
+      setShowComponent(true);
+    }, 6000);
+  }, []);
+
   if (!reactAccess && !videos) {
     return (
       <div>
@@ -61,7 +68,70 @@ const react = () => {
       </div>
     );
   } else if (!reactAccess) {
-    return <Plans />;
+    if (showComponent) {
+      return <Plans />;
+    } else {
+      return (
+        <div>
+          <Head>
+            <title>Become A Programmer</title>
+            <link rel='icon' href='/favicon.ico' />
+          </Head>
+          <Header />
+          <h1 className='text-red-600 text-5xl absolute left-[50%] top-20'>
+            Trial Access
+          </h1>
+          <h1 className='text-white-400 text-4xl absolute left-[50%] top-32'>
+            buy a full version
+          </h1>
+          <div className='mt-[60px] grid-container grid grid-cols-5'>
+            <div className='item2 col-span-4 bg-black '>
+              <video
+                onContextMenu={handleContextMenu}
+                controls
+                controlsList='nodownload'
+                aria-disabled='true'
+                autoPlay
+                style={{
+                  outline: "none",
+                  boxShadow: "none",
+                  maxHeight: "80vh",
+                  marginTop: "0px",
+                  width: "100%",
+                  zIndex: 50,
+                }}
+                src={`https://d3l6v5di84fd3f.cloudfront.net/${full}`}
+              ></video>
+              <div className='flex mt-[2vh] mx-[10%]'>
+                <p>{description}</p>
+              </div>
+            </div>
+            <div className='item1 col-span-1 mx-1'>
+              <div className='flex flex-col'>
+                {videos.map((video, index) => (
+                  <div
+                    className='w-[100%] cursor-pointer'
+                    onClick={() => {
+                      setFull(video.full);
+                      setTitle(video.title);
+                      setDescription(video.description);
+                    }}
+                    key={index}
+                  >
+                    <span>{video.id + " " + video.title}</span>
+                    <img
+                      className='opacity-100 h-full'
+                      alt='banner'
+                      src={video.imageUrl}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -78,6 +148,7 @@ const react = () => {
             controls
             controlsList='nodownload'
             aria-disabled='true'
+            autoPlay
             style={{
               outline: "none",
               boxShadow: "none",

@@ -2,6 +2,9 @@ import useAuth from "@/hooks/useAuth";
 import payments, { loadCheckout } from "@/lib/stripe";
 import { CheckIcon } from "@heroicons/react/solid";
 import { getProducts, Product } from "@stripe/firestore-stripe-payments";
+import useSubscriptionVuejs from "@/hooks/useSubscriptionVuejs";
+import useSubscriptionAngular from "@/hooks/useSubscriptionAngular";
+import useSubscriptionReact from "@/hooks/useSubscriptionReact";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
@@ -12,6 +15,10 @@ const Plans = () => {
   const [products, setProducts] = useState<any>([]);
   const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[0]);
   const [isBillingLoading, setIsBillingLoading] = useState(false);
+  const reactAccess = useSubscriptionReact(user);
+  const angularAccess = useSubscriptionAngular(user);
+  const vueAccess = useSubscriptionVuejs(user);
+  const [disable, setDisable] = useState(false);
 
   const subscribeToPlan = () => {
     if (!user) return;
@@ -39,6 +46,10 @@ const Plans = () => {
   }, []);
 
   //if (products === typeof Product) return <div>loading</div>;
+
+  useEffect(() => {
+    setSelectedPlan(products[1]);
+  }, [products]);
 
   if (products.length === 0) {
     return (
@@ -123,16 +134,33 @@ const Plans = () => {
                 ))}
               </tr>
               <tr className='tableRow'>
-                <td className='tableDataTitle'>Level</td>
+                <td className='tableDataTitle'>Status</td>
                 {products.map((product: Product) => (
                   <td className='divSubOne' key={product.id}>
                     <button
-                      disabled={!selectedPlan || isBillingLoading}
+                      disabled={
+                        isBillingLoading ||
+                        (product.id === "prod_NFnpy9838DslsZ" &&
+                          reactAccess === true) ||
+                        (product.id === "prod_NFnnQ8MnKrpmKN" &&
+                          angularAccess === true) ||
+                        (product.id === "prod_NFo6k1zlmiEA7j" &&
+                          vueAccess === true)
+                          ? true
+                          : false
+                      }
                       className='buttonSubOne'
                       onClick={() => subscribeToOnePlan(product)}
                     >
                       {isBillingLoading ? (
                         <Loader color='dark:fill-gray-300' />
+                      ) : (product.id === "prod_NFnpy9838DslsZ" &&
+                          reactAccess === true) ||
+                        (product.id === "prod_NFnnQ8MnKrpmKN" &&
+                          angularAccess === true) ||
+                        (product.id === "prod_NFo6k1zlmiEA7j" &&
+                          vueAccess === true) ? (
+                        "Owned"
                       ) : (
                         `Subscribe ${product.name}`
                       )}

@@ -15,7 +15,10 @@ const useSubscriptionReact = (user: User | null) => {
     onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
       {
         snapshot.subscriptions.map((subscription) => {
-          if (subscription.product === "prod_NFnpy9838DslsZ") {
+          if (
+            subscription.product === "prod_NFnpy9838DslsZ" &&
+            subscription.status === "active"
+          ) {
             setReactAccess(true);
           }
         });

@@ -15,7 +15,10 @@ const useSubscriptionAngular = (user: User | null) => {
     onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
       {
         snapshot.subscriptions.map((subscription) => {
-          if (subscription.product === "prod_NFnnQ8MnKrpmKN") {
+          if (
+            subscription.product === "prod_NFnnQ8MnKrpmKN" &&
+            subscription.status === "active"
+          ) {
             setAngularAccess(true);
           }
         });
