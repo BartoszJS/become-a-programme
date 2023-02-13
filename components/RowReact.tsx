@@ -64,10 +64,10 @@ export default function Video() {
     <>
       <Link href='/react'>
         <div className='group flex w-fit'>
-          <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
+          <h2 className='text-white text-2xl md:text-4xl font-extralight flex justify-start cursor-pointer duration-300 items-center p-4'>
             React
           </h2>
-          <h2 className='text-white text-4xl font-extralight flex justify-start cursor-pointer duration-500 items-center translate-x-[-600px] group-hover:translate-x-[0px]'>
+          <h2 className='text-white text-2xl md:text-4xl font-extralight flex justify-start cursor-pointer duration-500 items-center translate-x-[-600px] group-hover:translate-x-[0px]'>
             - check all courses
           </h2>
         </div>

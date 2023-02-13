@@ -51,10 +51,10 @@ const account = ({ products }: Props) => {
         <Membership />
         <Courses />
 
-        <div className=' mt-6 grid grid-cols-1 gap-x-4 px-4 md:grid-cols-4 md:border-x-0 border-t border-b-0 md:px-0'>
-          <h4 className='text-lg text-[gray]'>Settings</h4>
+        <div className='mt-6 grid grid-cols-1 gap-x-4 px-4 md:grid-cols-4 md:border-x-0 border-t border-b-0 md:px-0'>
+          <h4 className='text-lg text-[gray] mt-4'>Settings</h4>
           <p
-            className='col-span-3 cursor-pointer text-blue-500 hover:underline'
+            className='col-span-3 cursor-pointer text-blue-500 hover:underline mt-4'
             onClick={logout}
           >
             Logout

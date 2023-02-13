@@ -89,7 +89,7 @@ const Plans = () => {
             ))}
           </div>
           <table>
-            <tbody className='divide-y divide-[gray]'>
+            <tbody className='divide-y divide-[white]'>
               <tr className='tableRow'>
                 <td className='tableDataTitle'>Price</td>
                 {products.map((product: Product) => (
@@ -171,7 +171,7 @@ const Plans = () => {
                       <div className='flex justify-center items-center'>
                         <Link
                           href='/login'
-                          className='buttonSubOne flex justify-center'
+                          className='buttonSubOne flex justify-center text-center'
                           onClick={() => subscribeToOnePlan(product)}
                         >
                           Log in to buy

@@ -113,7 +113,7 @@ const react = () => {
                 }}
                 src={`https://d3l6v5di84fd3f.cloudfront.net/${full}`}
               ></video>
-              <div className='flex mt-[2vh] mx-[10%]'>
+              <div className='flex mt-[2vh] text-xs mx-[10%]'>
                 <p>{description}</p>
               </div>
             </div>
@@ -170,7 +170,7 @@ const react = () => {
             }}
             src={`https://d3l6v5di84fd3f.cloudfront.net/${full}`}
           ></video>
-          <div className='flex mt-[2vh] mx-[10%]'>
+          <div className='flex mt-[2vh] text-xs mx-[10%]'>
             <p>{description}</p>
           </div>
         </div>

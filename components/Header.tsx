@@ -30,7 +30,7 @@ const Header = () => {
     <div>
       {toggle && (
         <header className='fixed h-[110vh] w-[200px] z-1000 bg-black/0 right-0 items-start pt-[60px]'>
-          <div className='flex flex-col w-full text-right bg-black/40'>
+          <div className='flex flex-col w-full text-right bg-black/50'>
             <ul>
               <div className='w-full border border-t-white mb-2'></div>
               <Link href='/react'>
@@ -49,13 +49,21 @@ const Header = () => {
                 <li className='headerLink text-xl'>Pricing</li>
               </Link>{" "}
               <div className='w-full border border-t-white mt-2 mb-2'></div>
-              <Link href='/pricing'>
-                <li className='headerLink text-xl'>Account</li>
-              </Link>{" "}
-              <div className='w-full border border-t-white mt-2 mb-2'></div>
-              <Link href='/pricing'>
-                <li className='headerLink text-xl'>Logout</li>
-              </Link>{" "}
+              {user ? (
+                <div>
+                  <Link href='/pricing'>
+                    <li className='headerLink text-xl'>Account</li>
+                  </Link>
+                  <div className='w-full border border-t-white mt-2 mb-2'></div>
+                  <div onClick={logout} className='cursor-pointer'>
+                    <li className='headerLink text-xl'>Logout</li>
+                  </div>
+                </div>
+              ) : (
+                <Link href='/login'>
+                  <li className='headerLink text-xl'>Login</li>
+                </Link>
+              )}
               <div className='w-full border border-t-white mt-2 '></div>
             </ul>
           </div>
@@ -96,18 +104,25 @@ const Header = () => {
               </div>
               <div className='md:block hidden'>
                 <Link href='/account'>
-                  <UserCircleIcon className='sm:inline h-6 w-6 ' />
+                  <UserCircleIcon className='sm:inline h-6 w-6 m-2' />
                 </Link>
                 <BiLogOut
                   onClick={logout}
-                  className='sm:inline h-6 w-6 cursor-pointer '
+                  className='sm:inline h-6 w-6 cursor-pointer m-2'
                 />
               </div>
             </div>
           ) : (
-            <Link href='/login'>
-              <BiLogIn className=' sm:inline h-6 w-6 ' />
-            </Link>
+            <div className='flex items-center space-x-4 '>
+              <div className='md:hidden text-2xl cursor-pointer'>
+                <GiHamburgerMenu onClick={() => setToggle(!toggle)} />
+              </div>
+              <div className='md:block hidden'>
+                <Link href='/login'>
+                  <BiLogIn className=' sm:inline h-6 w-6 ' />
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       </header>
