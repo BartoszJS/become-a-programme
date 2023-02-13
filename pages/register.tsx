@@ -30,7 +30,7 @@ const register = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='relative flex justify-center items-center h-screen w-screen flex-col bg-black bg-transparent'>
+      <div className='relative flex justify-center items-center h-screen w-screen flex-col bg-black bg-gradient-to-b from-transparent to-black bg-transparent'>
         <Image
           className='object-cover -z-10 '
           src={banner.src}
