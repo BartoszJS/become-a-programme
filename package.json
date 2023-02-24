@@ -31,6 +31,7 @@
     "react-hook-form": "^7.43.0",
     "react-icons": "^4.7.1",
     "react-player": "^2.11.0",
+    "react-toastify": "^9.1.1",
     "suspend-react": "^0.0.9",
     "typescript": "4.9.5"
   },

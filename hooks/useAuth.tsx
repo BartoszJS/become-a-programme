@@ -6,6 +6,9 @@ import {
   User,
 } from "firebase/auth";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { auth } from "../firebase";
@@ -67,7 +70,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         router.push("/");
         setLoading(false);
       })
-      .catch((error) => alert(error.message))
+      .catch((error) =>
+        toast.error(error.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      )
       .finally(() => setLoading(false));
   };
 
@@ -80,7 +94,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         router.push("/");
         setLoading(false);
       })
-      .catch((error) => alert(error.message))
+      .catch((error) =>
+        toast.error(error.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      )
       .finally(() => setLoading(false));
   };
 
@@ -91,7 +116,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(null);
         router.push("/");
       })
-      .catch((error) => alert(error.message))
+      .catch((error) =>
+        toast.error(error.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      )
       .finally(() => setLoading(false));
   };
   const memoedValue = useMemo(
