@@ -107,7 +107,7 @@ const vuejs = () => {
                   width: "100%",
                   zIndex: 50,
                 }}
-                src={`https://d3l6v5di84fd3f.cloudfront.net/${full}`}
+                src={`https://h1114051.domeny.host/${full}`}
               ></video>
               <div className='flex mt-[2vh] text-xs mx-[10%]'>
                 <p>{description}</p>
@@ -164,7 +164,7 @@ const vuejs = () => {
               width: "100%",
               zIndex: 50,
             }}
-            src={`https://d3l6v5di84fd3f.cloudfront.net/${full}`}
+            src={`https://h1114051.domeny.host/${full}`}
           ></video>
           <div className='flex mt-[2vh] text-xs mx-[10%]'>
             <p>{description}</p>

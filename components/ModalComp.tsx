@@ -24,7 +24,7 @@ const ModalComp = ({ linkTo, introId, title, description }: Props) => {
           width: "100%",
           zIndex: 50,
         }}
-        src={`https://d3l6v5di84fd3f.cloudfront.net/${introId}`}
+        src={`https://h1114051.domeny.host/${introId}`}
       ></video>
       <div className='flex border border-gray-400'>
         <div className='flex justify-center items-start'>
