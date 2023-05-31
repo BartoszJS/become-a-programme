@@ -6,6 +6,7 @@ import useSubscriptionAngular from "@/hooks/useSubscriptionAngular";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { client } from "../client";
+import Video from "@/types/Video";
 
 const angular = () => {
   const { user } = useAuth();
@@ -29,14 +30,7 @@ const angular = () => {
     client
       .fetch(query)
       .then((data) => {
-        let tmp;
-        for (let i = 0; i < data.length - 1; i++) {
-          if (data[i].id >= data[i + 1].id) {
-            tmp = data[i];
-            data[i] = data[i + 1];
-            data[i + 1] = tmp;
-          }
-        }
+        data.sort((a: Video, b: Video) => a.id - b.id);
         setVideos(data);
       })
       .catch(console.error);
